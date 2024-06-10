@@ -18,7 +18,12 @@ reddit = praw.Reddit(
 )
 
 # URL of the Reddit thread
-url = 'https://www.reddit.com/r/musicsuggestions/comments/188acwv/give_me_songs_about_not_being_worried/'
+url = os.getenv('REDDIT_URL')
+
+# Check if URL is provided
+if url is None:
+    print("Reddit URL is not provided in the .env file.")
+    sys.exit(1)
 
 # Get the submission object
 submission = reddit.submission(url=url)
